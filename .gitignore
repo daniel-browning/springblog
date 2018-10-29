@@ -25,3 +25,9 @@
 /.nb-gradle/
 
 src/main/resources/application.properties
+.IdeaProjects/annotations-exercise
+.IdeaProjects/codeup-web-exercises
+.IdeaProjects/daniel-browning.github.io.git
+.IdeaProjects/movies-application
+.IdeaProjects/wrangell-dom-manipulation-assessment
+.IdeaProjects/wrangell-java-assessment
