@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Results</title>
+</head>
+<body>
+
+<h1>Roll of the Dice</h1>
+
+<h3>The user guessed <span th:text="${userGuess}"></span></h3>
+<h3>The answer is <span th:text="${diceNumber}"></span></h3>
+<h3 th:if="${userGuess == diceNumber}">Therefore, you guessed right!</h3>
+<h3 th:if="${userGuess != diceNumber}">Andddd you guessed wrong!</h3>
+
+
+</body>
+</html>
