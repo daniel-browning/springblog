@@ -1,35 +1,47 @@
-package com.codeup.springblog;
+package com.codeup.blog.controllers;
 
+import com.codeup.springblog.Post;
+import com.codeup.blog.PostService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
 
-    @RequestMapping(path = "/posts", method = RequestMethod.GET)
-    @ResponseBody
-    public String posts() {
-        return "posts index page";
+    private PostService postService;
+
+    public PostController(PostService service){
+        this.postService = service;
     }
 
-    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String postsId(@PathVariable int id) {
-        return "view individual posts";
+    @GetMapping("/posts")
+    public String postsIndex(Model vModel) {
+        vModel.addAttribute("posts", postService.findAll());
+        return "posts/index";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-    @ResponseBody
-    public String postCreateForm() {
-        return "view the form for creating a post";
+    @GetMapping("/posts/{id}")
+    public String individualPost(@PathVariable int id, Model vModel) {
+        vModel.addAttribute("post", postService.findOne(id));
+        return "posts/show";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+    @GetMapping("/posts/create")
     @ResponseBody
-    public String postCreate() {
+    public String sendPostForm() {
+        return "/posts/create";
+    }
+
+    @PostMapping("/posts/create")
+    @ResponseBody
+    public String createPost() {
         return "create a new post";
     }
 
